@@ -541,6 +541,169 @@ footer{
 }
 footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);}
 
+/* ---------- FEATURED PROJECT ---------- */
+#featured{
+  position:relative;overflow:hidden;
+  background:var(--surface);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:10.5rem 0;
+}
+#featured::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(201,168,76,0.08), transparent 55%),
+    radial-gradient(ellipse at 88% 100%, rgba(63,158,130,0.07), transparent 52%);
+}
+.feat-grid{
+  display:grid;grid-template-columns:0.88fr 1.12fr;gap:4.5rem;align-items:start;
+  position:relative;z-index:1;
+}
+/* grid/flex children default to min-width:auto, so a nowrap child (the URL bar)
+   would push the track wider than the viewport — opt them into shrinking */
+.feat-grid > *,.feat-media-row > *{min-width:0;}
+.feat-meta{position:sticky;top:13vh;}
+.feat-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--gold);
+  display:flex;align-items:center;gap:.6rem;margin-bottom:1.4rem;letter-spacing:.08em;
+}
+.feat-eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent);opacity:.45;}
+.feat-title{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,7vw,5.4rem);
+  line-height:.9;letter-spacing:.01em;margin-bottom:.5rem;
+}
+.feat-title .dash{color:var(--gold);}
+.feat-kicker{
+  font-family:'JetBrains Mono',monospace;font-size:.84rem;color:var(--teal2);
+  margin-bottom:1.5rem;letter-spacing:.03em;
+}
+.feat-desc{color:var(--muted);font-size:.97rem;line-height:1.72;margin-bottom:.9rem;}
+.feat-desc strong{color:var(--ink);font-weight:500;}
+
+.feat-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  margin:2.2rem 0;background:rgba(10,10,10,0.45);
+}
+.feat-stat{padding:1.3rem 1rem;border-right:1px solid var(--line);}
+.feat-stat:last-child{border-right:none;}
+.feat-stat b{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,3.4vw,2.7rem);
+  color:var(--gold);display:block;line-height:1;font-variant-numeric:tabular-nums;
+}
+.feat-stat.teal b{color:var(--teal2);}
+.feat-stat span{
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);
+  display:block;margin-top:.5rem;letter-spacing:.06em;line-height:1.5;
+}
+.feat-points{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin:1.6rem 0;}
+.feat-points li{
+  font-size:.88rem;color:var(--muted);padding-left:1.3rem;position:relative;line-height:1.6;
+}
+.feat-points li::before{content:"▸";position:absolute;left:0;top:0;color:var(--gold);}
+.feat-points li b{color:var(--ink);font-weight:500;}
+.feat-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.8rem;}
+.feat-tags span{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold);
+  border:1px solid rgba(201,168,76,0.28);padding:.3rem .65rem;border-radius:20px;
+}
+.feat-ctas{display:flex;gap:.9rem;flex-wrap:wrap;}
+
+/* media column */
+.feat-media{display:flex;flex-direction:column;gap:1.4rem;}
+.browser-frame{
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  background:var(--surface2);position:relative;
+}
+.browser-bar{
+  display:flex;align-items:center;gap:.4rem;padding:.6rem .9rem;
+  background:var(--surface2);border-bottom:1px solid var(--line);
+}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:#333;}
+.browser-bar .url{
+  margin-left:.7rem;font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1;
+}
+.browser-bar .live-chip{
+  margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--teal2);
+  border:1px solid rgba(63,158,130,0.4);border-radius:20px;padding:.14rem .5rem;
+  display:flex;align-items:center;gap:.35rem;flex-shrink:0;
+}
+.browser-bar .live-chip::before{
+  content:"";width:5px;height:5px;border-radius:50%;background:var(--teal2);
+  box-shadow:0 0 7px var(--teal2);animation:pulse 1.6s infinite;
+}
+.browser-frame img{width:100%;display:block;}
+
+/* clip-path wipe reveal */
+.wipe{clip-path:inset(0 0 100% 0);}
+.wipe.in{animation:wipeIn 1s cubic-bezier(.77,0,.175,1) forwards;}
+@keyframes wipeIn{to{clip-path:inset(0 0 0 0);}}
+
+.feat-media-row{display:grid;grid-template-columns:.78fr 1.22fr;gap:1.4rem;align-items:stretch;}
+.feat-kiosk{
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#000;
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.feat-kiosk img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.feat-kiosk .k-tag{
+  position:absolute;top:.6rem;left:.6rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  color:var(--ink);background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.14);
+  padding:.2rem .5rem;border-radius:20px;backdrop-filter:blur(4px);
+}
+.feat-flow{
+  border:1px solid var(--line);border-radius:10px;padding:1.3rem;
+  background:rgba(10,10,10,0.5);display:flex;flex-direction:column;gap:.9rem;
+}
+.feat-flow h5{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--teal2);
+  letter-spacing:.07em;margin-bottom:.2rem;
+}
+.flow-step{display:flex;gap:.75rem;align-items:flex-start;}
+.flow-step .n{
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--gold);
+  border:1px solid rgba(201,168,76,0.3);border-radius:50%;
+  width:21px;height:21px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.flow-step p{font-size:.78rem;color:var(--muted);line-height:1.5;}
+.flow-step p b{color:var(--ink);font-weight:500;}
+
+@media(max-width:900px){
+  #featured{padding:6rem 0;}
+  .feat-grid{grid-template-columns:1fr;gap:2.6rem;}
+  .feat-meta{position:static;}
+  .feat-media-row{grid-template-columns:1fr;}
+  .feat-kiosk{max-height:360px;}
+}
+@media(max-width:520px){
+  .feat-stats{grid-template-columns:1fr;}
+  .feat-stat{border-right:none;border-bottom:1px solid var(--line);}
+  .feat-stat:last-child{border-bottom:none;}
+}
+
+/* ---------- SCROLL-DRIVEN ENHANCEMENT (progressive) ---------- */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .pcard-media img{
+      animation:auto linear mediaRise both;
+      animation-timeline:view();
+      animation-range:entry 12% cover 42%;
+    }
+    @keyframes mediaRise{
+      from{opacity:.35;transform:translateY(22px) scale(1.035);}
+      to{opacity:1;transform:translateY(0) scale(1);}
+    }
+    #featured::before{
+      animation:auto linear featDrift both;
+      animation-timeline:view(#featured);
+      animation-range:entry 0% exit 100%;
+    }
+    @keyframes featDrift{
+      from{transform:translateY(-26px);}
+      to{transform:translateY(26px);}
+    }
+  }
+}
+
 /* ---------- RESPONSIVE NAV ---------- */
 @media(max-width:840px){
   .nav-links{
@@ -570,6 +733,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut
 <nav>
   <a href="#top" class="logo">ZARYAB<span>.</span></a>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#featured" class="navlink">E-Gate</a></li>
     <li><a href="#build" class="navlink">Build</a></li>
     <li><a href="#design" class="navlink">Design</a></li>
     <li><a href="#skills" class="navlink">Skills</a></li>
@@ -592,7 +756,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut
     <span class="lg scramble-target">AI/ML ENGINEER</span><span class="cross mono scramble-target">×</span><span class="lt scramble-target">GRAPHIC DESIGNER</span>
   </h1>
   <p class="sub">
-    19-year-old AI/ML engineer with a filed patent, 14+ shipped production systems, and a spiking neural network trained on a real fruit-fly brain. Building campus-scale AI infrastructure at Lahore Garrison University — biometric attendance for ~400 faculty, the official admissions chatbot, RFID gate access, orphanage surveillance AI, a real-time Lahore smog dashboard pitched to 14 government stakeholders, and more — all solo, all in production. Also a freelance packaging &amp; brand designer for international clients.
+    19-year-old AI/ML engineer with a filed patent, 14+ shipped production systems, and a spiking neural network trained on a real fruit-fly brain. Building campus-scale AI infrastructure at Lahore Garrison University — RFID gate access verifying a 5,562-student registry at the campus gates, biometric attendance for ~400 faculty, the official admissions chatbot, orphanage surveillance AI, a real-time Lahore smog dashboard pitched to 14 government stakeholders, and more — all solo, all in production. Also a freelance packaging &amp; brand designer for international clients.
   </p>
   <div class="hero-ctas">
     <a href="#build" class="btn btn-solid">View AI Projects →</a>
@@ -639,6 +803,98 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut
     <div class="reel-card"><img src="img/img_22.jpg" alt="FlyNet live brain visualization — 158,262 neurons"><div class="reel-cap">FlyNet — Live Brain (158K neurons)</div></div>
     <div class="reel-card"><img src="img/img_23.jpg" alt="FlyNet steering circuit — 739 neurons"><div class="reel-cap">FlyNet — Steering Circuit</div></div>
     <div class="reel-card"><img src="img/img_24.jpg" alt="FlyNet interactive sandbox with 3D fly"><div class="reel-cap">FlyNet — Interactive Sandbox</div></div>
+  </div>
+</section>
+
+<section id="featured">
+  <div class="wrap">
+    <div class="feat-grid">
+
+      <div class="feat-meta">
+        <div class="feat-eyebrow">FLAGSHIP — DEPLOYED AT SCALE</div>
+        <h2 class="feat-title">E<span class="dash">—</span>GATE</h2>
+        <div class="feat-kicker">RFID Campus Access Control · Lahore Garrison University</div>
+        <p class="feat-desc">
+          The gate verification system running on <strong>LGU's physical campus gates</strong>. Every student
+          tapping in at Gate 7 or Gate 4 hits this backend — card UID resolved against a
+          <strong>5,562-student registry</strong>, identity surfaced on the kiosk, entry logged, all under a second.
+        </p>
+        <p class="feat-desc">
+          Built end to end: the Excel ingestion pipeline, the card-enrollment tooling the registration team
+          uses, the WebSocket command center, and the kiosk UI itself.
+        </p>
+
+        <div class="feat-stats">
+          <div class="feat-stat">
+            <b class="countup" data-count="5562">0</b>
+            <span>STUDENTS<br>ENROLLED</span>
+          </div>
+          <div class="feat-stat teal">
+            <b class="countup" data-count="2">0</b>
+            <span>CAMPUS GATES<br>LIVE</span>
+          </div>
+          <div class="feat-stat">
+            <b class="countup" data-count="2" data-suffix="×">0</b>
+            <span>INPUT MODES<br>RFID + BIOMETRIC</span>
+          </div>
+        </div>
+
+        <ul class="feat-points">
+          <li><b>Bulk enrollment pipeline</b> — 5,562 student records ingested from institutional Excel, then card UIDs bound one by one by the registration team</li>
+          <li><b>Dual input path</b> — RFID card tap as the primary flow, with an AIT AiFace biometric terminal integrated at Gate 4 via its <code>/pub/api</code> protocol</li>
+          <li><b>Live command center</b> — WebSocket feed streaming entry/exit events, occupancy count, and per-gate analytics in real time</li>
+          <li><b>Running in production</b> — PostgreSQL on Railway, serving daily campus traffic for the Directorate of Student Affairs</li>
+        </ul>
+
+        <div class="feat-tags">
+          <span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>WebSocket</span>
+          <span>RFID</span><span>Biometrics</span><span>XLSX Pipeline</span><span>Railway</span>
+        </div>
+
+        <div class="feat-ctas">
+          <a href="https://gate-api-production-b712.up.railway.app" class="btn btn-solid" target="_blank" rel="noopener">View Live Kiosk →</a>
+          <a href="https://github.com/zaryabmalik314-code/rfid-gate-system" class="btn btn-outline" target="_blank" rel="noopener">↗ Source</a>
+        </div>
+      </div>
+
+      <div class="feat-media">
+        <div class="browser-frame reveal">
+          <div class="browser-bar">
+            <i></i><i></i><i></i>
+            <span class="url">gate-api-production-b712.up.railway.app</span>
+            <span class="live-chip">LIVE</span>
+          </div>
+          <img class="wipe" src="img/img_25.jpg" alt="E-GATE kiosk screen at LGU — Tap Your Card verification interface">
+        </div>
+
+        <div class="feat-media-row">
+          <div class="feat-kiosk reveal">
+            <span class="k-tag">gate kiosk — portrait</span>
+            <img class="wipe" src="img/img_28.jpg" alt="E-GATE kiosk in portrait orientation showing live system status and occupancy">
+          </div>
+          <div class="feat-flow reveal">
+            <h5>// ENROLLMENT → GATE</h5>
+            <div class="flow-step">
+              <span class="n">1</span>
+              <p><b>Ingest.</b> Institutional Excel sheet of 5,562 students parsed into PostgreSQL — name, roll number, department.</p>
+            </div>
+            <div class="flow-step">
+              <span class="n">2</span>
+              <p><b>Bind.</b> Team calls each student, student taps their card, reader captures the UID, roll number ties it to the record.</p>
+            </div>
+            <div class="flow-step">
+              <span class="n">3</span>
+              <p><b>Verify.</b> At the gate, a tap resolves the UID to a student, renders their identity on the kiosk, and writes the entry log.</p>
+            </div>
+            <div class="flow-step">
+              <span class="n">4</span>
+              <p><b>Observe.</b> Command center receives the event over WebSocket — live feed, occupancy, per-gate analytics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -887,59 +1143,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut
       <article class="pcard reveal">
         <div class="pcard-media illustrative">
           <svg width="100%" height="100%" viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
-            <text x="200" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--teal2)">RFID GATE ACCESS SYSTEM</text>
-            <rect x="40" y="35" width="80" height="110" rx="6" fill="rgba(63,158,130,0.06)" stroke="var(--teal2)" stroke-opacity="0.4"/>
-            <text x="80" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">RFID</text>
-            <text x="80" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">READER</text>
-            <rect x="55" y="75" width="50" height="30" rx="3" fill="rgba(201,168,76,0.08)" stroke="var(--gold)" stroke-opacity="0.3"/>
-            <text x="80" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--gold)">RC522</text>
-            <text x="80" y="98" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="5" fill="var(--muted)">13.56 MHz</text>
-            <rect x="55" y="112" width="50" height="22" rx="3" fill="rgba(63,158,130,0.06)" stroke="var(--teal2)" stroke-opacity="0.3"/>
-            <text x="80" y="126" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--teal2)">ESP32</text>
-            <line x1="120" y1="90" x2="155" y2="90" stroke="var(--gold)" stroke-opacity="0.5" stroke-width="1"/>
-            <polygon points="155,87 161,90 155,93" fill="var(--gold)" opacity="0.5"/>
-            <rect x="165" y="35" width="80" height="110" rx="6" fill="rgba(201,168,76,0.06)" stroke="var(--gold)" stroke-opacity="0.4"/>
-            <text x="205" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--gold)">BACKEND</text>
-            <text x="205" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Next.js API</text>
-            <text x="205" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">PostgreSQL</text>
-            <text x="205" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Prisma ORM</text>
-            <text x="205" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Auth.js</text>
-            <text x="205" y="118" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Railway</text>
-            <line x1="245" y1="90" x2="280" y2="90" stroke="var(--teal2)" stroke-opacity="0.5" stroke-width="1"/>
-            <polygon points="280,87 286,90 280,93" fill="var(--teal2)" opacity="0.5"/>
-            <rect x="290" y="35" width="80" height="110" rx="6" fill="rgba(63,158,130,0.06)" stroke="var(--teal2)" stroke-opacity="0.4"/>
-            <text x="330" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">DASHBOARD</text>
-            <text x="330" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Live logs</text>
-            <text x="330" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Entry/exit</text>
-            <text x="330" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Role mgmt</text>
-            <text x="330" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Analytics</text>
-            <rect x="80" y="170" width="240" height="18" rx="3" fill="rgba(63,158,130,0.08)" stroke="var(--teal2)" stroke-opacity="0.3"/>
-            <text x="200" y="183" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">DEPLOYED AT LGU  ·  3 GATE VARIANTS  ·  LIVE</text>
-          </svg>
-          <span class="illust-tag">RFID scan > auth > gate control</span>
-        </div>
-        <div class="pcard-bar"><i></i><i></i><i></i><span class="fname">egate_system.ts</span><span class="pcard-status">Live</span></div>
-        <div class="pcard-body">
-          <h3>E-GATE — RFID Access Control</h3>
-          <p>RFID-based gate access system deployed at LGU — ESP32 hardware readers with RC522 modules, a Next.js dashboard with real-time entry/exit logging, role-based access control, and analytics.</p>
-          <ul class="highlights">
-            <li>Hardware + software integration: ESP32 microcontrollers with RC522 RFID readers at physical campus gates</li>
-            <li>Real-time dashboard showing live entry/exit logs, access analytics, and role management</li>
-            <li>Three gate project variants deployed across campus with shared backend infrastructure</li>
-            <li>Full-stack: Next.js frontend, PostgreSQL + Prisma backend, Auth.js, deployed on Railway</li>
-          </ul>
-          <div class="tagrow">
-            <span>Next.js</span><span>ESP32</span><span>RFID</span><span>PostgreSQL</span><span>Prisma</span><span>Railway</span>
-          </div>
-          <div class="pcard-links">
-            <a href="https://github.com/zaryabmalik314-code" target="_blank" rel="noopener">↗ GitHub (private)</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="pcard reveal">
-        <div class="pcard-media illustrative">
-          <svg width="100%" height="100%" viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
             <text x="200" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--gold)">UNIPRINT — PRINT ORDERING</text>
             <rect x="30" y="40" width="100" height="80" rx="6" fill="rgba(201,168,76,0.06)" stroke="var(--gold)" stroke-opacity="0.4"/>
             <text x="80" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--gold)">STUDENT</text>
@@ -983,47 +1186,17 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut
       </article>
 
       <article class="pcard reveal">
-        <div class="pcard-media illustrative">
-          <svg width="100%" height="100%" viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
-            <text x="200" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--teal2)">ORPHANGUARD AI — SURVEILLANCE PLATFORM</text>
-            <rect x="25" y="32" width="110" height="100" rx="6" fill="rgba(63,158,130,0.06)" stroke="var(--teal2)" stroke-opacity="0.4"/>
-            <text x="80" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">DETECTION</text>
-            <text x="80" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Violence (8 types)</text>
-            <text x="80" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Emotion analysis</text>
-            <text x="80" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Headcount match</text>
-            <text x="80" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Perimeter breach</text>
-            <text x="80" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Missing child</text>
-            <line x1="135" y1="82" x2="155" y2="82" stroke="var(--gold)" stroke-opacity="0.5"/>
-            <polygon points="155,79 161,82 155,85" fill="var(--gold)" opacity="0.5"/>
-            <rect x="165" y="32" width="90" height="100" rx="6" fill="rgba(201,168,76,0.06)" stroke="var(--gold)" stroke-opacity="0.4"/>
-            <text x="210" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--gold)">DASHBOARD</text>
-            <text x="210" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">10 orphanages</text>
-            <text x="210" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Rankings A-F</text>
-            <text x="210" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Health records</text>
-            <text x="210" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Visitor CNIC</text>
-            <text x="210" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Anomaly trends</text>
-            <line x1="255" y1="82" x2="275" y2="82" stroke="var(--teal2)" stroke-opacity="0.5"/>
-            <polygon points="275,79 281,82 275,85" fill="var(--teal2)" opacity="0.5"/>
-            <rect x="285" y="32" width="90" height="100" rx="6" fill="rgba(63,158,130,0.06)" stroke="var(--teal2)" stroke-opacity="0.4"/>
-            <text x="330" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">ALERTS</text>
-            <text x="330" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Real-time WS</text>
-            <text x="330" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Daily briefing</text>
-            <text x="330" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Notifications</text>
-            <text x="330" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Score 0-100</text>
-            <rect x="60" y="155" width="280" height="20" rx="3" fill="rgba(201,168,76,0.08)" stroke="var(--gold)" stroke-opacity="0.3"/>
-            <text x="200" y="169" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--gold)">TARGETING UNICEF  ·  IGNITE  ·  EU GRANTS  ·  DEPLOYED</text>
-          </svg>
-          <span class="illust-tag">detect > alert > rank > report</span>
-        </div>
+        <div class="pcard-media"><span class="shot-tag">real screenshot — live on Railway</span><img src="img/img_26.jpg" alt="OrphanGuard AI command center landing page showing 85 orphanages monitored and 3,200+ children protected"></div>
         <div class="pcard-bar"><i></i><i></i><i></i><span class="fname">orphanguard_app.js</span><span class="pcard-status">Live</span></div>
         <div class="pcard-body">
           <h3>OrphanGuard AI</h3>
-          <p>AI-powered orphanage surveillance and accountability platform — multi-facility dashboard with violence detection, emotion analysis, child health tracking, visitor management, and transparency scoring. Built after witnessing abuse at a real orphanage visit.</p>
+          <p>Child-protection command center modelled across all 85 registered orphanages in Punjab — violence detection, emotion analysis, health tracking, visitor control, and facility safety rankings in one dashboard. Built after witnessing abuse first-hand on an orphanage visit.</p>
           <ul class="highlights">
-            <li>8-type violence/harassment detection system with real-time WebSocket alerts and daily briefings</li>
+            <li>Province-scale model: 85 orphanages across 36 districts, 3,200+ children, 450+ camera feeds</li>
+            <li>Four detection models — violence &amp; harassment, headcount/zone tracking, proximity, and audio</li>
             <li>Children registry with health records, growth tracking (height/weight/BMI), and missing-child alerts</li>
-            <li>Orphanage ranking algorithm (0-100 score, A-F grades) with week-over-week anomaly detection</li>
-            <li>Targeting UNICEF Venture Fund, IGNITE Pakistan, and EU grants — pitch document and demo ready</li>
+            <li>Facility safety rankings (0–100 score, A–F grades) with week-over-week anomaly detection</li>
+            <li>Pitched to UNICEF Venture Fund, IGNITE Pakistan, and EU grant programmes</li>
           </ul>
           <div class="tagrow">
             <span>Node.js</span><span>WebSocket</span><span>Express</span><span>Railway</span><span>Real-time</span>
@@ -1036,38 +1209,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut
       </article>
 
       <article class="pcard reveal">
-        <div class="pcard-media illustrative">
-          <svg width="100%" height="100%" viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg">
-            <text x="200" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--gold)">LAHORE SMOG DASHBOARD</text>
-            <rect x="25" y="35" width="80" height="90" rx="6" fill="rgba(201,168,76,0.06)" stroke="var(--gold)" stroke-opacity="0.4"/>
-            <text x="65" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--gold)">DATA</text>
-            <text x="65" y="68" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">WAQI API</text>
-            <text x="65" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">PM2.5 / PM10</text>
-            <text x="65" y="92" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">AQI inversion</text>
-            <text x="65" y="104" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">EPA breakpts</text>
-            <line x1="105" y1="78" x2="130" y2="78" stroke="var(--teal2)" stroke-opacity="0.5"/>
-            <polygon points="130,75 136,78 130,81" fill="var(--teal2)" opacity="0.5"/>
-            <rect x="140" y="35" width="110" height="90" rx="6" fill="rgba(63,158,130,0.06)" stroke="var(--teal2)" stroke-opacity="0.4"/>
-            <text x="195" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">ANALYSIS</text>
-            <text x="195" y="68" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Dept assessments</text>
-            <text x="195" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">3h forecast</text>
-            <text x="195" y="92" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Threshold alerts</text>
-            <text x="195" y="104" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Data quality flags</text>
-            <line x1="250" y1="78" x2="275" y2="78" stroke="var(--gold)" stroke-opacity="0.5"/>
-            <polygon points="275,75 281,78 275,81" fill="var(--gold)" opacity="0.5"/>
-            <rect x="285" y="35" width="90" height="90" rx="6" fill="rgba(201,168,76,0.06)" stroke="var(--gold)" stroke-opacity="0.4"/>
-            <text x="330" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--gold)">OUTPUT</text>
-            <text x="330" y="68" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">Live dashboard</text>
-            <text x="330" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">API endpoints</text>
-            <text x="330" y="92" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">PNG snapshots</text>
-            <text x="330" y="104" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">WhatsApp share</text>
-            <rect x="40" y="148" width="320" height="20" rx="3" fill="rgba(63,158,130,0.08)" stroke="var(--teal2)" stroke-opacity="0.3"/>
-            <text x="200" y="162" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="var(--teal2)">14 GOVT STAKEHOLDERS  ·  PITCHED AT LGU  ·  LIVE ON RAILWAY</text>
-            <rect x="40" y="178" width="320" height="18" rx="3" fill="rgba(201,168,76,0.06)" stroke="var(--gold)" stroke-opacity="0.2"/>
-            <text x="200" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6" fill="var(--muted)">IDAP · Urban Unit · WWF · PTA · Safe City · PHA · LG&amp;CD · Agriculture</text>
-          </svg>
-          <span class="illust-tag">ingest > analyze > alert > share</span>
-        </div>
+        <div class="pcard-media"><span class="shot-tag">real screenshot — live AQI data</span><img src="img/img_27.jpg" alt="Lahore Air Quality Bulletin dashboard showing AQI 74 Moderate with per-station readings and hourly history"></div>
         <div class="pcard-bar"><i></i><i></i><i></i><span class="fname">smog_dashboard.py</span><span class="pcard-status">Live</span></div>
         <div class="pcard-body">
           <h3>Lahore Smog Dashboard</h3>
@@ -1255,9 +1397,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mut
         <p>Every project here — architecture, model training, hardware integration, backend, deployment — built solo, end to end. No team. No starter template. Just problem to production.</p>
         <div class="stat-row">
           <div><b>14+</b><span>SOLO AI/SOFTWARE PROJECTS</span></div>
+          <div><b>5,562</b><span>STUDENTS ON E-GATE</span></div>
           <div><b>1</b><span>PATENT FILED</span></div>
           <div><b>~400</b><span>FACULTY USING SMARTATTEND</span></div>
-          <div><b>capt_zaryab_</b><span>FIVERR HANDLE</span></div>
         </div>
         <div class="about-stack mono">
           <span class="pill">Python</span>
@@ -1377,11 +1519,70 @@ const track = document.getElementById('marqueeTrack');
 const seq = [...words, ...words].map(w => `<span class="${w.c}">${w.t}</span>`).join('<span>/</span>');
 track.innerHTML = seq;
 
-// scroll reveal
+// scroll reveal — staggered within a shared parent, decelerating interval
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+  const hits = entries.filter(e => e.isIntersecting);
+  const byParent = new Map();
+  hits.forEach(e => {
+    const p = e.target.parentElement;
+    if(!byParent.has(p)) byParent.set(p, []);
+    byParent.get(p).push(e.target);
+  });
+  byParent.forEach(group => {
+    group.forEach((el, i) => {
+      // decelerating stagger: 0, 50, 90, 120, 140... capped so long lists never crawl
+      const delay = REDUCED ? 0 : Math.min(i * 50 - (i * i * 2), 220);
+      setTimeout(() => el.classList.add('show'), Math.max(delay, 0));
+      io.unobserve(el);
+    });
+  });
 }, {threshold:.15});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ---------- CLIP-PATH WIPE REVEAL ----------
+// Observe the container, not the image: a clip-path-hidden element has zero
+// visible area, so IntersectionObserver would never report it as intersecting.
+const wipeIo = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.wipe').forEach(img => img.classList.add('in'));
+      wipeIo.unobserve(e.target);
+    }
+  });
+}, {threshold:.25});
+document.querySelectorAll('.wipe').forEach(el => {
+  if(REDUCED){ el.classList.add('in'); return; }
+  wipeIo.observe(el.closest('.browser-frame, .feat-kiosk') || el.parentElement);
+});
+
+// ---------- STAT COUNT-UP ----------
+function easeOutExpo(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+function countUp(el){
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || '';
+  if(REDUCED){ el.textContent = target.toLocaleString() + suffix; return; }
+  const duration = 1400;
+  const start = performance.now();
+  (function frame(now){
+    const t = Math.min((now - start) / duration, 1);
+    const val = Math.round(easeOutExpo(t) * target);
+    el.textContent = val.toLocaleString() + suffix;
+    if(t < 1) requestAnimationFrame(frame);
+    else el.textContent = target.toLocaleString() + suffix;
+  })(start);
+}
+
+const countIo = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      countUp(e.target);
+      countIo.unobserve(e.target);
+    }
+  });
+}, {threshold:.6});
+document.querySelectorAll('.countup').forEach(el => countIo.observe(el));
 
 // ---------- REELS: hero bg slider + mockup reel (reuse design grid images, no duplicated bytes) ----------
 (function(){
@@ -1715,7 +1916,7 @@ filterBtns.forEach(btn => {
   });
 
   // elements that just grow the ring on hover (no pull — too large to drag)
-  const growSelector = '.pcard, .dcard, input, textarea';
+  const growSelector = '.pcard, .dcard, .browser-frame, .feat-kiosk, .feat-flow, .feat-stat, input, textarea';
   document.querySelectorAll(growSelector).forEach(el => {
     el.addEventListener('mouseenter', () => { ring.classList.add('ring-active'); dot.classList.add('dot-hide'); glow.classList.add('glow-active'); });
     el.addEventListener('mouseleave', () => { ring.classList.remove('ring-active'); dot.classList.remove('dot-hide'); glow.classList.remove('glow-active'); });
